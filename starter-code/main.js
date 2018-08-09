@@ -5,6 +5,37 @@
 	and a makeNoise property that prints out their noise.
 */
 
+var dog = {
+	name: "dog",
+	noise: "woof",
+	makeNoise: function () {
+		console.log(this.noise);
+	},
+}
+
+var cat = {
+	name: "cat",
+	noise: "meow",
+	makeNoise: function () {
+		console.log(this.noise);
+	},
+}
+
+var bird = {
+	name: "bird",
+	noise: "pri pri",
+	makeNoise: function () {
+		console.log(this.noise);
+	},
+}
+
+var mouse = {
+	name: "mouse",
+	noise: "skitter",
+	makeNoise: function () {
+		console.log(this.noise);
+	},
+}
 /*
 	Part 2: Let's use an array to hold all of these animals.
 	Create a new variable, animals, that contains the 4 animals we just created.
@@ -13,6 +44,12 @@
 
 	Hint: Use the makeNoise() function for each animal in the array
 */
+
+var animals = [dog, cat, bird, mouse];
+
+for (var i = 0; i < animals.length; i++) {
+	console.log(`${animals[i]} says ${animals[i].makeNoise()}`);
+}
 
 /*
 	Part 3: Let's see how hungry these animals get by adding a "hunger" property to them.
@@ -24,6 +61,10 @@
 	myObject.newPropertyName = newValue; // or...
 	myObject['newPropertyName'] = newValue;
 */
+
+for (var i = 0; i < animals.length; i++) {
+	animals[i].hunger = 10;
+}
 
 /*
 	Part 4: These animals should be able to walk. Let's add a new "walk" property to them.
@@ -43,6 +84,13 @@
 
 	Hint: You will need the "this" keyword
 */
+
+for (var i = 0; i < animals.length; i++) {
+	animals[i].walk = function () {
+		console.log(`${this.name} took a walk.`);
+		this.hunger -= 1;
+	}
+}
 
 /*
 	Part 5: Now these animals can walk and talk by themselves, but they're quite lonely.
@@ -65,6 +113,12 @@
 	duck.friend.makeNoise();
 	// => "chirp quack"
 */
+
+for (var i = 0; i < animals.length; i++) {
+	animals[i].makeFriend = function (species) {
+		this.friend = species;
+	}
+}
 
 
 /* BONUS
@@ -101,4 +155,9 @@ Hint #2: You'll need to use the this keyword to access the name of the current a
 Hint #3: Still stuck? The code to update the image source should look like this:
 	document.querySelector('img').setAttribute('src', 'images/' + this.name + '.jpg');
 */
-	
+
+for (var i = 0; i < animals.length; i++) {
+	animals[i].appear = function () {
+		document.querySelector('img').setAttribute('src', 'starter-code/images/' + this.name + '.jpg');
+	}
+}
